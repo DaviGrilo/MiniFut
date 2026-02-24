@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiniFut</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="website icon" type="png" href="./img/MiniFut-logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-gray-200 p-4">
+
+    <!-- TELA INICIAL -->
+    <div id="startScreen" class="relative w-full max-w-lg mx-auto">
+        <img src="./img/Fut-background.png" alt="Tela Inicial MiniFut" class="w-full h-auto block rounded-lg shadow-lg" onerror="this.src='https://placehold.co/800x600?text=MiniFut'"/>
+        
+        <div class="absolute top-4 right-4">
+            <button id="howToPlayButton" class="bg-black/70 hover:bg-black text-white text-sm px-4 py-2 rounded-lg shadow transition">
+                📖 Como Jogar
+            </button>
+        </div>
+
+        <div class="absolute bottom-4 left-0 right-0 flex justify-center gap-4 px-4">
+            <button id="pvpButton" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition">
+                Jogador vs. Jogador
+            </button>
+            <button id="pvaiButton" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition">
+                Jogador vs. IA
+            </button>
+        </div>
+    </div>
+
+    <!-- INTERFACE DO JOGO -->
+    <div id="gameInterface" class="game-interface hidden flex flex-col items-center">
+        <img src="./img/MiniFut-logo.png" alt="Logo MiniFut" class="w-24 h-auto mb-5 drop-shadow-md" onerror="this.style.display='none'"/>
+
+        <div class="flex items-center justify-center gap-5 mb-1 px-3 py-1 bg-black/20 rounded text-xl font-semibold text-white shadow">
+            <span class="text-blue-400" id="scoreBlue">0</span>
+            <span class="text-gray-400">×</span>
+            <span class="text-red-400" id="scoreRed">0</span>
+        </div>
+
+        <div id="timer" class="mb-4 text-lg font-semibold text-gray-400">05:00</div>
+
+        <canvas id="gameCanvas" class="w-full max-w-4xl aspect-video rounded-lg shadow-lg border-2 border-gray-700"></canvas>
+
+        <button id="restartButton" class="restart-button mt-2">Reiniciar Jogo</button>
+    </div>
+
+    <!-- TELA FINAL -->
+    <div id="endGameScreen" class="fixed inset-0 hidden flex items-center justify-center bg-black/80 backdrop-blur-sm z-50">
+        <div class="bg-gray-900 border border-gray-700 rounded-2xl shadow-2xl p-10 text-center w-full max-w-md animate-fadeIn">
+            <h2 class="text-4xl font-extrabold mb-4 text-yellow-400">⚽ Fim de Jogo!</h2>
+            <p id="endGameMessage" class="text-3xl font-bold mb-6 text-white"></p>
+            <div class="flex justify-center gap-4">
+                <button id="playAgainButton" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg transition transform hover:scale-105">🔄 Jogar Novamente</button>
+                <button id="goToMenuButton" class="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg transition transform hover:scale-105">🏠 Menu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL COMO JOGAR -->
+    <div id="howToPlayModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50">
+        <div class="bg-gray-900 text-gray-200 max-w-md w-full p-8 rounded-2xl shadow-2xl border border-gray-700 relative">
+            <button id="closeModalButton" class="absolute top-3 right-3 text-gray-400 hover:text-white text-xl">✕</button>
+            <h2 class="text-2xl font-bold mb-6 text-center text-yellow-400">⚽ Como Jogar</h2>
+            <div class="space-y-4 text-sm">
+                <div><h3 class="font-semibold text-blue-400">🔵 Jogador Azul</h3><p>W A S D → Mover</p><p>Espaço → Chutar</p></div>
+                <div><h3 class="font-semibold text-red-400">🔴 Jogador Vermelho</h3><p>Setas ↑ ↓ ← → → Mover</p><p>Enter → Chutar</p></div>
+                <div class="pt-4 border-t border-gray-700"><p class="text-center">⏱️ A partida dura 5 minutos.<br>🎯 Marque mais gols para vencer!</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- IMPORTANTE: type="module" permite usar import/export -->
+
+    <script type="module" src="./js/main.js"></script>
+
+</body>
+</html>
