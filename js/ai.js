@@ -12,27 +12,26 @@ export class AIController {
         let targetX = ball.x;
         let targetY = ball.y;
         let shouldKick = false;
-        let kickTarget = { x: 0, y: canvas.height / 2 }; // Gol adversário (assumindo esquerda)
+        let kickTarget = { x: 0, y: canvas.height / 2 };
         let kickPower = CONFIG.KICK_STRENGTH;
 
         const distToBall = distance(player.x, player.y, ball.x, ball.y);
         const touchDist = (player.radius + ball.radius) * scale + 2;
         const defensiveLine = canvas.width / 2;
 
-        // ZONA DEFENSIVA (Nosso campo)
+        
         if (ball.x >= defensiveLine) {
             if (distToBall < touchDist) {
-                // Se está perto do gol e com a bola, chuta pra longe
+                
                 if (Math.abs(ball.x - canvas.width) < canvas.width * 0.2 && Math.random() < 0.9) {
                     shouldKick = true;
                     kickPower = CONFIG.CLEARANCE_KICK_STRENGTH;
                 } else {
-                    // Tenta driblar para trás da bola
                     targetX = ball.x - (CONFIG.PLAYER_RADIUS * 1.5);
                 }
             }
         } 
-        // ZONA OFENSIVA (Campo inimigo)
+    
         else {
             if (distToBall < touchDist) {
                 if (Math.random() < 0.6) {
@@ -44,11 +43,9 @@ export class AIController {
             }
         }
 
-        // Limites do campo para o target da IA
         targetX = Math.max(0, Math.min(targetX, canvas.width));
         targetY = Math.max(0, Math.min(targetY, canvas.height));
 
-        // Calcular Velocidade baseada no alvo
         let vx = 0;
         let vy = 0;
 
@@ -58,7 +55,6 @@ export class AIController {
         if (targetY < player.y - 2) vy = -CONFIG.PLAYER_SPEED;
         else if (targetY > player.y + 2) vy = CONFIG.PLAYER_SPEED;
 
-        // Adiciona um pouco de "imperfeição" humana
         if (Math.random() < 0.05) {
             vx *= 0.5;
             vy *= 0.5;

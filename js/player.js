@@ -3,7 +3,7 @@ import { getScale } from './utils.js';
 
 export class Player {
     constructor(isLeftField, color, controls, isAI = false) {
-        this.isLeftField = isLeftField; // Para saber onde dar spawn (true = esquerda)
+        this.isLeftField = isLeftField;
         this.color = color;
         this.controls = controls;
         this.isAI = isAI;
@@ -30,18 +30,15 @@ export class Player {
         }
     }
 
-    // Recebe input externo (do teclado ou da IA)
     update(canvas, inputVx, inputVy) {
         this.vx = inputVx;
         this.vy = inputVy;
 
-        // Aplica atrito se não estiver se movendo ativamente
         if (inputVx === 0 && inputVy === 0) {
             this.vx *= CONFIG.FRICTION;
             this.vy *= CONFIG.FRICTION;
         }
         
-        // Zera velocidades residuais
         if (Math.abs(this.vx) < 0.1) this.vx = 0;
         if (Math.abs(this.vy) < 0.1) this.vy = 0;
 
@@ -65,14 +62,12 @@ export class Player {
         const scale = getScale(canvasWidth);
         const r = this.radius * scale;
 
-        // Desenha o corpo
         ctx.beginPath();
         ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
         ctx.fillStyle = this.color;
         ctx.fill();
         ctx.closePath();
 
-        // Efeito simples de direção/sombra
         ctx.beginPath();
         ctx.arc(this.x + this.vx * 2, this.y + this.vy * 2, 3, 0, Math.PI * 2);
         ctx.fillStyle = COLORS.PLAYER_SHADOW;

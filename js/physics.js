@@ -13,7 +13,7 @@ export function checkCollision(obj1, obj2, canvas) {
     const minDist = scaledRadius1 + scaledRadius2;
 
     if (dist < minDist) {
-        // Correção do script.js: Se a distância for quase zero, aplica um pequeno empurrão aleatório
+        
         if (dist < 0.001) {
             dx = (Math.random() - 0.5) * 0.2;
             dy = (Math.random() - 0.5) * 0.2;
@@ -32,12 +32,12 @@ export function checkCollision(obj1, obj2, canvas) {
         obj2.x -= normalX * overlap * 0.5;
         obj2.y -= normalY * overlap * 0.5;
 
-        // Recalcular distância após mover
+        
         dx = obj1.x - obj2.x;
         dy = obj1.y - obj2.y;
         dist = Math.sqrt(dx * dx + dy * dy);
         
-        if (dist < 0.001) return; // Evita divisão por zero
+        if (dist < 0.001) return;
 
         const newNormalX = dx / dist;
         const newNormalY = dy / dist;
@@ -47,7 +47,7 @@ export function checkCollision(obj1, obj2, canvas) {
         const dotProduct = relativeVx * newNormalX + relativeVy * newNormalY;
 
         if (dotProduct < 0) {
-            // Aproximação de massa baseada no raio
+
             const mass1 = scaledRadius1;
             const mass2 = scaledRadius2;
             const impulseMagnitude = (-(1 + CONFIG.BOUNCE_LOSS) * dotProduct) / ((1 / mass1) + (1 / mass2));
@@ -59,7 +59,6 @@ export function checkCollision(obj1, obj2, canvas) {
         }
     }
 
-    // Prevenção extra de NaN (herdada do seu script.js)
     if (isNaN(obj1.x) || isNaN(obj1.y)) {
         obj1.x = canvas.width / 2 - 20;
         obj1.y = canvas.height / 2;
@@ -94,7 +93,6 @@ export function applyKick(player, ball, canvas, force = CONFIG.KICK_STRENGTH, ta
                 dirX = 1; dirY = 0;
             }
 
-            // Adiciona uma pequena variação no chute ofensivo da IA
             if (force === CONFIG.OFFENSIVE_KICK_STRENGTH) {
                 const angleOffset = (Math.random() - 0.5) * Math.PI * 0.15;
                 const currentAngle = Math.atan2(dirY, dirX);

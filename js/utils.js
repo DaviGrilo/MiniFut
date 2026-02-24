@@ -1,5 +1,3 @@
-// Retorna o fator de escala baseado na largura atual do canvas
-// A referência original era 800px de largura
 export function getScale(canvasWidth) {
     return canvasWidth / 800;
 }
