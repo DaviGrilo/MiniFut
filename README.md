@@ -1,8 +1,19 @@
 # ⚽ MiniFut – Futebol 2D
 
-![MiniFut Logo](./img/MiniFut-logo.png)
+<p align="center">
+  <img src="./img/MiniFut-logo.png" width="250"/>
+</p>
+
 
 **MiniFut** é um jogo de futebol 2D onde você pode jogar sozinho contra uma IA ou desafiar um amigo no modo PvP. Com design retrô moderno e controles simples, MiniFut proporciona partidas rápidas e divertidas.
+
+---
+
+## 🎥 Demonstração
+
+<p align="center">
+  <img src="./img/minifut.gif" width="700"/>
+</p>
 
 ---
 
@@ -11,7 +22,7 @@
 - 👥 **Jogador vs Jogador** – dois jogadores no mesmo teclado.
 - 🤖 **Jogador vs IA** – jogue contra uma inteligência artificial com comportamento reativo.
 
----
+---                              
 
 ## 🕹️ Controles
 
